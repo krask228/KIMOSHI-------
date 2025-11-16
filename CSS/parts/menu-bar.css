@@ -1,0 +1,437 @@
+*{
+    margin: 0;padding: 0;box-sizing: border-box;
+}
+
+.container {
+    background: #000000;
+    padding: 15px;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    width: 100%;
+}
+
+.topnav {
+    display: flex; 
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap; 
+    color: #fff;
+}
+
+.logo {
+    width: 180px;
+    height: 80px;
+    display: flex;
+    align-items: center;
+}
+
+.mobile-controls {
+    display: none;
+    align-items: center;
+    gap: 15px;
+}
+
+.bars {
+    color: #fff;
+    cursor: pointer;
+    display: none;
+    border: 1px solid #fff;
+    padding: 5px 12px;
+    border-radius: 4px;
+}
+
+.bars i {
+    position: relative;
+    top: 1px;
+}
+
+.nav {
+    list-style: none;
+    display: flex;
+}
+
+.nav a {
+    color: #fff;
+    text-decoration: none;
+    padding: 15px;
+    display: block;
+    font-weight: 500;
+    font-size: 25px;
+    border-radius: 10px;
+    transition: all 250ms ease-in-out;
+}
+
+.nav a:hover {
+    color: black;
+    background-color: orangered;
+}
+
+/* Стили для корзины */
+.cart-link {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.cart-link-mobile {
+    display: none;
+}
+
+.cart-link-desktop {
+    display: inline-flex;
+}
+
+.cart-count {
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.cart-icon {
+    display: none;
+    font-size: 20px;
+}
+
+.cart-icon-badge {
+    display: none;
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    min-width: 20px;
+    height: 20px;
+    background-color: #4caf50;
+    color: #fff;
+    border-radius: 50%;
+    font-size: 11px;
+    font-weight: bold;
+    align-items: center;
+    justify-content: center;
+    padding: 0 4px;
+    border: 2px solid #fff;
+    line-height: 1;
+    box-sizing: border-box;
+    z-index: 10;
+}
+
+.cart-link.cart-has-items .cart-count {
+    color: #4caf50;
+    font-weight: 700;
+}
+
+/* Стиль для счетчика на иконке (только для desktop) */
+.cart-link .cart-icon-badge {
+    /* На desktop badge скрыт, используется только счетчик в скобках */
+}
+
+/* Уведомления о добавлении в корзину */
+.cart-notification {
+    position: fixed;
+    top: 100px;
+    right: 20px;
+    background-color: #4caf50;
+    color: #fff;
+    padding: 15px 25px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    z-index: 10000;
+    opacity: 0;
+    transform: translateX(100%);
+    transition: all 0.3s ease;
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.cart-notification.show {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+/* Адаптивность уведомлений */
+@media (max-width: 768px) {
+    .cart-notification {
+        top: 80px;
+        right: 15px;
+        padding: 12px 20px;
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 480px) {
+    .cart-notification {
+        top: 70px;
+        right: 10px;
+        left: 10px;
+        padding: 12px 15px;
+        font-size: 14px;
+        text-align: center;
+    }
+}
+
+/* Основной контент должен иметь отступ */
+main {
+    padding-top: 20px;
+}
+
+@media (max-width: 768px) {
+    main {
+        padding-top: 15px;
+    }
+}
+
+@media (max-width: 480px) {
+    main {
+        padding-top: 10px;
+    }
+}
+
+/* Планшеты */
+@media screen and (max-width: 1024px) {
+    .logo {
+        width: 160px;
+        height: 70px;
+    }
+
+    .nav a {
+        font-size: 22px;
+        padding: 12px;
+    }
+
+    .container {
+        padding: 12px 15px;
+    }
+}
+
+/* Мобильные устройства */
+@media screen and (max-width: 768px) {
+    .mobile-controls {
+        display: flex;
+    }
+    
+    .bars {
+        display: block;
+        font-size: 24px;
+        padding: 8px 15px;
+    }
+    
+    .logo {
+        width: 140px;
+        height: 60px;
+    }
+
+    .container {
+        padding: 10px 15px;
+    }
+    
+    /* Скрываем корзину из навигации на мобильных */
+    .cart-link-desktop {
+        display: none !important;
+    }
+    
+    /* Показываем мобильную корзину */
+    .cart-link-mobile {
+        display: inline-flex !important;
+    }
+    
+    .nav {
+        display: none;
+        width: 100%;
+        position: fixed;
+        top: 80px;
+        left: 0;
+        background: orangered;
+        z-index: 1001;
+        flex-direction: column;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+    
+    .nav.active {
+        display: flex;
+    }
+    
+    .nav__item {
+        width: 100%;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .nav__item:last-child {
+        border-bottom: none;
+    }
+    
+    .nav a {
+        text-align: center;
+        padding: 18px 15px;
+        font-size: 20px;
+        display: block;
+        width: 100%;
+    }
+    
+    .nav a:hover {
+        background: rgb(255, 255, 255);
+        color: #000;
+    }
+    
+    /* На мобильных устройствах скрываем текст "Корзина" и показываем иконку */
+    .cart-link-mobile {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        font-size: 0;
+        padding: 8px;
+        min-width: 40px;
+        height: 40px;
+        border: none;
+        border-radius: 4px;
+        color: #fff;
+        text-decoration: none;
+        box-sizing: border-box;
+        background: none;
+    }
+    
+    .cart-link-mobile .cart-icon {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        font-size: 22px !important;
+        margin: 0;
+        width: 100%;
+        height: 100%;
+    }
+    
+    /* Счетчик на иконке корзины для мобильных */
+    .cart-link-mobile .cart-icon-badge {
+        display: none;
+        position: absolute;
+        top: -6px;
+        right: -6px;
+        min-width: 18px;
+        height: 18px;
+        background-color: #4caf50;
+        color: #fff;
+        border-radius: 50%;
+        font-size: 10px;
+        font-weight: bold;
+        align-items: center;
+        justify-content: center;
+        padding: 0 3px;
+        border: 2px solid #fff;
+        line-height: 1;
+        box-sizing: border-box;
+        z-index: 10;
+    }
+    
+    .cart-link-mobile.cart-has-items .cart-icon-badge {
+        display: flex;
+    }
+    
+    /* Убираем стандартный счетчик для мобильных */
+    .cart-link-mobile::after {
+        display: none;
+    }
+    
+    .cart-link-mobile:hover {
+        background-color: rgba(255, 255, 255, 0.1);
+    }
+}
+
+/* Маленькие мобильные устройства */
+@media screen and (max-width: 480px) {
+    .logo {
+        width: 120px;
+        height: 55px;
+    }
+
+    .container {
+        padding: 8px 10px;
+    }
+
+    .mobile-controls {
+        gap: 10px;
+    }
+
+    .bars {
+        font-size: 20px;
+        padding: 6px 12px;
+    }
+
+    .cart-link-mobile {
+        padding: 6px;
+        min-width: 36px;
+        height: 36px;
+    }
+
+    .cart-link-mobile .cart-icon {
+        font-size: 20px !important;
+    }
+
+    .nav {
+        top: 71px;
+    }
+
+    .nav a {
+        padding: 15px 12px;
+        font-size: 18px;
+    }
+}
+
+/* Очень маленькие устройства */
+@media screen and (max-width: 360px) {
+    .logo {
+        width: 100px;
+        height: 50px;
+    }
+
+    .mobile-controls {
+        gap: 8px;
+    }
+
+    .bars {
+        font-size: 18px;
+        padding: 5px 10px;
+    }
+
+    .cart-link-mobile {
+        padding: 5px;
+        min-width: 32px;
+        height: 32px;
+    }
+
+    .cart-link-mobile .cart-icon {
+        font-size: 18px !important;
+    }
+
+    .nav {
+        top: 66px;
+    }
+
+    .nav a {
+        padding: 12px 10px;
+        font-size: 16px;
+    }
+}
+
+/* Для больших экранов - всегда показывать меню */
+@media screen and (min-width: 769px) {
+    .mobile-controls {
+        display: none !important;
+    }
+    
+    .nav {
+        display: flex !important;
+    }
+
+    .bars {
+        display: none !important;
+    }
+    
+    /* На десктопе показываем только корзину в навигации */
+    .cart-link-desktop {
+        display: inline-flex !important;
+    }
+    
+    .cart-link-mobile {
+        display: none !important;
+    }
+}

@@ -1,0 +1,90 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+*:before {
+    box-sizing: border-box;
+}
+
+*:after {
+    box-sizing: border-box;
+}
+
+
+body {
+    font-size: 18px;
+    font-family: "Oswald", sans-serif;
+    height: auto;
+    font-weight: 400;
+    line-height: 100%;
+    background-color: rgb(255, 255, 255);
+    color: #080708;
+    overflow-x: hidden;
+}
+
+/* Адаптивная типографика */
+@media (max-width: 1024px) {
+    body {
+        font-size: 17px;
+    }
+}
+
+@media (max-width: 768px) {
+    body {
+        font-size: 16px;
+        line-height: 1.4;
+    }
+}
+
+@media (max-width: 480px) {
+    body {
+        font-size: 15px;
+        line-height: 1.5;
+    }
+}
+
+@media (max-width: 360px) {
+    body {
+        font-size: 14px;
+    }
+}
+
+a {
+    color: #080708;
+    text-decoration: none;
+    transition: all 150ms ease-in-out;
+}
+
+a:hover {
+    color: #ec2929;
+    text-decoration: none;
+}
+
+ul {
+    list-style: none;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+button {
+    outline: none !important;
+    font-family: inherit;
+    font-size: inherit;
+}
+
+input {
+    font-size: inherit;
+    font-family: inherit;
+}
+
+
