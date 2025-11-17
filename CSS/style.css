@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap');
 
-@import url(./parts/_reset.css);
+@import url(../CSS/parts/_reset.css);
 @import url(./parts/menu-bar.css);
 @import url(./parts/Header.css);
 @import url(./parts/Main.css);
