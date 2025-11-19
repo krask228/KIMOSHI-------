@@ -224,6 +224,11 @@
 	cursor: pointer;
 }
 
+.image-switch__item--active .image-switch__img {
+	opacity: 1;
+	z-index: -1;
+}
+
 .image-switch__img {
 	position: absolute;
 	left: 50%;
