@@ -7,7 +7,9 @@ $(document).ready(function(){
     console.log("Bars elements found:", $('.bars').length);
     console.log("Nav elements found:", $('.nav').length);
     
-    $('.bars').on('click', function(){
+    $('.bars').on('click', function(e){
+        e.stopPropagation(); // Предотвращаем всплытие события
+        e.preventDefault(); // Предотвращаем стандартное поведение
         console.log("Bars clicked - working!");
         console.log("Current nav display:", $('.nav').css('display'));
         $('.nav').toggleClass('active').slideToggle(150, function() {
@@ -17,7 +19,11 @@ $(document).ready(function(){
 
     // Закрытие меню при клике вне его
     $(document).on('click', function(e) {
-        if (!$(e.target).closest('.topnav').length) {
+        // Не закрываем меню, если клик был на .bars, внутри .bars (иконка), или внутри .topnav
+        const isClickOnBars = $(e.target).closest('.bars').length > 0;
+        const isClickOnTopnav = $(e.target).closest('.topnav').length > 0;
+        
+        if (!isClickOnTopnav && !isClickOnBars) {
             if ($(window).width() <= 768) {
                 $('.nav').removeClass('active').slideUp(150);
             }
