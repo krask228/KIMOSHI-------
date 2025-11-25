@@ -60,31 +60,20 @@ $(document).ready(function(){
         }
     });
 
-    // Обработчик клика на логотип - возврат на главную страницу
+    // Обработчик клика на логотип - переход или прокрутка к началу
     $('#logoLink').on('click', function(e) {
-        e.preventDefault();
-        const currentPath = window.location.pathname;
-        const currentHref = window.location.href;
-        const isMainPage = currentPath.includes('index.html') || 
-                         currentPath.endsWith('/') || 
-                         currentPath.endsWith('\\') ||
-                         currentHref.includes('index.html') ||
-                         !currentPath.includes('About.html');
-        
-        if (isMainPage) {
-            // Если мы на главной странице, просто прокручиваем наверх
+        const target = e.currentTarget;
+        const homeUrl = target.dataset.home || target.getAttribute('href') || './index.html';
+        const absoluteHomeUrl = new URL(homeUrl, window.location.origin).pathname.replace(/\/+$/, '');
+        const currentPath = window.location.pathname.replace(/\/+$/, '');
+
+        if (currentPath === absoluteHomeUrl || currentPath === '') {
+            e.preventDefault();
             $('html, body').animate({
                 scrollTop: 0
             }, 500);
         } else {
-            // Определяем правильный путь к главной странице
-            let mainPagePath = 'index.html';
-            if (currentPath.includes('parts') || currentPath.includes('О нас')) {
-                mainPagePath = '../../index.html';
-            } else if (currentPath.includes('/')) {
-                mainPagePath = '../index.html';
-            }
-            window.location.href = mainPagePath;
+            target.setAttribute('href', homeUrl);
         }
     });
 });
